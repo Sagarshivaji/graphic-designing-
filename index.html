@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Design System & Graphic Design Practice Resources</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Curated list of design system, UI/UX & graphic design practice resources." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-elevated: #0b1020;
+      --card: #111827;
+      --card-soft: #111827;
+      --accent: #6366f1;
+      --accent-secondary: #ec4899;
+      --accent-tertiary: #f59e0b;
+      --accent-soft: rgba(99, 102, 241, 0.12);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --chip-bg: rgba(148, 163, 184, 0.12);
+      --chip-text: #e5e7eb;
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 22px 45px rgba(15, 23, 42, 0.8);
+      --transition-fast: 160ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 50%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 32px 16px 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 1200px;
+      background: linear-gradient(
+        145deg,
+        rgba(15, 23, 42, 0.94),
+        rgba(15, 23, 42, 0.96),
+        rgba(30, 64, 175, 0.35)
+      );
+      border-radius: 28px;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      box-shadow: var(--shadow-soft);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle glow blobs */
+    .glow {
+      position: absolute;
+      filter: blur(55px);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .glow.one {
+      width: 220px;
+      height: 220px;
+      background: rgba(129, 140, 248, 0.7);
+      top: -60px;
+      right: -40px;
+    }
+    .glow.two {
+      width: 200px;
+      height: 200px;
+      background: rgba(236, 72, 153, 0.6);
+      bottom: -60px;
+      left: -40px;
+    }
+    .glow.three {
+      width: 180px;
+      height: 180px;
+      background: rgba(245, 158, 11, 0.5);
+      top: 30%;
+      left: -60px;
+    }
+
+    header {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 26px;
+      z-index: 1;
+    }
+
+    .title-block {
+      max-width: 700px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      font-size: 11px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(129, 140, 248, 0.9);
+    }
+
+    h1 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h1 span.highlight {
+      background: linear-gradient(120deg, #a5b4fc, #38bdf8, #22c55e, #ec4899);
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 620px;
+      line-height: 1.5;
+    }
+
+    .quick-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(52, 211, 153, 0.85);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 2.2fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 850px) {
+      .app-shell {
+        padding: 18px;
+        border-radius: 22px;
+      }
+      main {
+        grid-template-columns: 1fr;
+      }
+      header {
+        margin-bottom: 20px;
+      }
+    }
+
+    /* left column: info + filter */
+    .side-panel {
+      background: radial-gradient(circle at top left, #111827, #020617);
+      border-radius: var(--radius-xl);
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .side-panel h2 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .side-panel p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      color: var(--chip-text);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .filter-group-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .filter-btn {
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: background var(--transition-fast), border var(--transition-fast),
+        transform 120ms ease-out, color var(--transition-fast);
+    }
+
+    .filter-btn.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: #e5e7eb;
+      transform: translateY(-1px);
+    }
+
+    .filter-btn.uiux.active {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: var(--accent);
+    }
+
+    .filter-btn.graphic.active {
+      background: rgba(236, 72, 153, 0.15);
+      border-color: var(--accent-secondary);
+    }
+
+    .filter-btn.all.active {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: var(--accent-tertiary);
+    }
+
+    .filter-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+
+    .category-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    .category-indicator.uiux {
+      background-color: var(--accent);
+      box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+    }
+
+    .category-indicator.graphic {
+      background-color: var(--accent-secondary);
+      box-shadow: 0 0 8px rgba(236, 72, 153, 0.6);
+    }
+
+    .tip-box {
+      border-radius: var(--radius-lg);
+      padding: 10px 11px;
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 12px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin-top: 4px;
+    }
+
+    .tip-icon {
+      font-size: 14px;
+      margin-top: 1px;
+    }
+
+    /* right column: cards */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 730px) {
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      position: relative;
+      background: radial-gradient(circle at top left, #111827, #020617);
+      border-radius: var(--radius-lg);
+      padding: 14px 14px 12px;
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      transition: transform 140ms ease-out, box-shadow 140ms ease-out,
+        border-color 140ms ease-out, background 140ms ease-out;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at top right,
+        rgba(129, 140, 248, 0.12),
+        transparent 60%
+      );
+      opacity: 0;
+      transition: opacity 160ms ease-out;
+      pointer-events: none;
+    }
+
+    .card.uiux::before {
+      background: radial-gradient(
+        circle at top right,
+        rgba(99, 102, 241, 0.12),
+        transparent 60%
+      );
+    }
+
+    .card.graphic::before {
+      background: radial-gradient(
+        circle at top right,
+        rgba(236, 72, 153, 0.12),
+        transparent 60%
+      );
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.9);
+      border-color: rgba(129, 140, 248, 0.7);
+      background: radial-gradient(circle at top left, #020617, #020617);
+    }
+
+    .card.uiux:hover {
+      border-color: rgba(99, 102, 241, 0.7);
+    }
+
+    .card.graphic:hover {
+      border-color: rgba(236, 72, 153, 0.7);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding: 3px 6px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .badge.uiux {
+      border-color: rgba(99, 102, 241, 0.6);
+    }
+
+    .badge.graphic {
+      border-color: rgba(236, 72, 153, 0.6);
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      min-height: 40px;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .card-tag {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-muted);
+    }
+
+    .card-tag.uiux {
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    .card-tag.graphic {
+      border-color: rgba(236, 72, 153, 0.4);
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .card-link {
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+      transition: background var(--transition-fast), border var(--transition-fast),
+        transform 120ms ease-out;
+    }
+
+    .card-link span.icon {
+      font-size: 11px;
+      transform: translateY(0.5px);
+    }
+
+    .card-link:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .card-link.graphic:hover {
+      background: rgba(236, 72, 153, 0.15);
+      border-color: var(--accent-secondary);
+    }
+
+    .card-meta {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .footer-note {
+      opacity: 0.8;
+    }
+
+    .footer-tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: all 120ms ease-out;
+    }
+
+    .footer-tag:hover {
+      background: rgba(15, 23, 42, 1);
+      transform: translateY(-1px);
+    }
+
+    .counter {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="glow three"></div>
+
+    <header>
+      <div class="title-block">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          UI/UX & Graphic Design Practice
+        </div>
+        <h1>
+          Curated <span class="highlight">Design Resources</span>
+        </h1>
+        <p class="subtitle">
+          A handpicked collection of sites to practice UI/UX, graphic design, and design systems — from quick challenges to deep-dive learning.
+        </p>
+      </div>
+      <div class="quick-meta">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          100% free to browse
+        </div>
+        <div class="pill">Built by Sagar · Open source</div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Left side info / filters -->
+      <section class="side-panel" aria-label="About this list">
+        <div>
+          <h2>How to use this list</h2>
+          <p>
+            Mix different types of design practice: UI drills, graphic design challenges, and system-level thinking. Rotate 1–2 resources per week and build projects from them.
+          </p>
+        </div>
+
+        <div>
+          <div class="filter-group-label">Design categories</div>
+          <div class="chip-row">
+            <span class="chip">UI/UX design</span>
+            <span class="chip">Graphic design</span>
+            <span class="chip">Typography</span>
+            <span class="chip">Brand identity</span>
+            <span class="chip">Layout & composition</span>
+            <span class="chip">Color theory</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="filter-group-label">Filter resources</div>
+          <div class="filter-row" aria-label="Resource categories">
+            <button class="filter-btn all active" type="button" data-category="all">
+              All resources
+            </button>
+            <button class="filter-btn uiux" type="button" data-category="uiux">
+              UI/UX
+            </button>
+            <button class="filter-btn graphic" type="button" data-category="graphic">
+              Graphic design
+            </button>
+          </div>
+          <div id="counter" class="counter">Showing 14 resources</div>
+        </div>
+
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <p>
+            Clone this repo, swap descriptions with your own notes, and keep it as a "living" resource library as you discover new tools.
+          </p>
+        </div>
+      </section>
+
+      <!-- Right side cards -->
+      <section class="resource-grid" aria-label="Resource cards">
+        <!-- UI/UX Resources -->
+        
+        <!-- UX Tools -->
+        <article class="card uiux" data-category="uiux">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator uiux"></span>UX Tools</div>
+            <span class="badge uiux">Challenge · UX process</span>
+          </div>
+          <p class="card-desc">
+            UX challenges that cover research, flows, wireframes, and interface design — great for practicing end-to-end UX and system thinking.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag uiux">UX challenges</span>
+            <span class="card-tag uiux">Flows & IA</span>
+            <span class="card-tag uiux">Case studies</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link"
+              href="https://www.uxtools.co/challenges"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: system-level UX</span>
+          </div>
+        </article>
+
+        <!-- Sharpen -->
+        <article class="card uiux" data-category="uiux">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator uiux"></span>Sharpen.design</div>
+            <span class="badge uiux">Prompt generator</span>
+          </div>
+          <p class="card-desc">
+            Generates open-ended prompts for products, features, and brand work. Perfect when you want real-world problem statements for your portfolio.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag uiux">Product briefs</span>
+            <span class="card-tag uiux">Portfolio ideas</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link"
+              href="https://sharpen.design"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: project ideas</span>
+          </div>
+        </article>
+
+        <!-- UI Coach -->
+        <article class="card uiux" data-category="uiux">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator uiux"></span>UI Coach</div>
+            <span class="badge uiux">UI challenge</span>
+          </div>
+          <p class="card-desc">
+            Quick UI prompt ideas to design screens and components. Great for daily practice, warm-ups, and layout exploration.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag uiux">UI drills</span>
+            <span class="card-tag uiux">Layouts</span>
+            <span class="card-tag uiux">Components</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link"
+              href="https://uicoach.io"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: daily UI</span>
+          </div>
+        </article>
+
+        <!-- Designercize -->
+        <article class="card uiux" data-category="uiux">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator uiux"></span>Designercize</div>
+            <span class="badge uiux">Timed challenge</span>
+          </div>
+          <p class="card-desc">
+            Random design challenges with a timer. Helps you practice thinking out loud and sketching solutions quickly — like a mini UX interview.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag uiux">Speed practice</span>
+            <span class="card-tag uiux">Whiteboard prep</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link"
+              href="https://designercize.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: quick reps</span>
+          </div>
+        </article>
+
+        <!-- Mobbin -->
+        <article class="card uiux" data-category="uiux">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator uiux"></span>Mobbin</div>
+            <span class="badge uiux">Inspiration · Patterns</span>
+          </div>
+          <p class="card-desc">
+            A large library of real app screenshots and flows. Use it to study design systems, navigation, and UI patterns across top products.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag uiux">Pattern library</span>
+            <span class="card-tag uiux">Flows</span>
+            <span class="card-tag uiux">System analysis</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link"
+              href="https://mobbin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: references</span>
+          </div>
+        </article>
+
+        <!-- Interaction Design Foundation -->
+        <article class="card uiux" data-category="uiux">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator uiux"></span>Interaction Design Foundation</div>
+            <span class="badge uiux">Theory · Courses</span>
+          </div>
+          <p class="card-desc">
+            In-depth UX and interaction design courses. Great for strengthening your fundamentals around usability, research, and system-level design.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag uiux">UX theory</span>
+            <span class="card-tag uiux">HCI</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link"
+              href="https://www.interaction-design.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: deep learning</span>
+          </div>
+        </article>
+
+        <!-- Daily UI -->
+        <article class="card uiux" data-category="uiux">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator uiux"></span>Daily UI</div>
+            <span class="badge uiux">Classic UI challenge</span>
+          </div>
+          <p class="card-desc">
+            100-day UI challenge for screen design prompts. Combine it with other resources here to add system thinking to each screen you create.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag uiux">Daily prompts</span>
+            <span class="card-tag uiux">Visual design</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link"
+              href="https://www.dailyui.co"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: UI consistency</span>
+          </div>
+        </article>
+
+        <!-- Graphic Design Resources -->
+        
+        <!-- Briefbox -->
+        <article class="card graphic" data-category="graphic">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator graphic"></span>Briefbox</div>
+            <span class="badge graphic">Design briefs</span>
+          </div>
+          <p class="card-desc">
+            Curated graphic design briefs to practice branding, packaging, and editorial design. Realistic client projects to build your portfolio.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag graphic">Branding</span>
+            <span class="card-tag graphic">Packaging</span>
+            <span class="card-tag graphic">Editorial</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link graphic"
+              href="https://briefbox.me"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: portfolio projects</span>
+          </div>
+        </article>
+
+        <!-- The Design Project -->
+        <article class="card graphic" data-category="graphic">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator graphic"></span>The Design Project</div>
+            <span class="badge graphic">Learning path</span>
+          </div>
+          <p class="card-desc">
+            A series of graphic design challenges focusing on typography, color, and layout. Each challenge builds on the previous one.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag graphic">Typography</span>
+            <span class="card-tag graphic">Color theory</span>
+            <span class="card-tag graphic">Layout</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link graphic"
+              href="https://thedesignproject.io"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: fundamentals</span>
+          </div>
+        </article>
+
+        <!-- Typewolf -->
+        <article class="card graphic" data-category="graphic">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator graphic"></span>Typewolf</div>
+            <span class="badge graphic">Typography inspiration</span>
+          </div>
+          <p class="card-desc">
+            Excellent resource for typography practice. Study font pairings, real website examples, and typography fundamentals.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag graphic">Typography</span>
+            <span class="card-tag graphic">Font pairing</span>
+            <span class="card-tag graphic">Web type</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link graphic"
+              href="https://www.typewolf.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: typography</span>
+          </div>
+        </article>
+
+        <!-- Logo Design Love -->
+        <article class="card graphic" data-category="graphic">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator graphic"></span>Logo Design Love</div>
+            <span class="badge graphic">Logo challenges</span>
+          </div>
+          <p class="card-desc">
+            Resources, courses, and challenges focused specifically on logo design and brand identity. Great for practicing visual identity work.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag graphic">Logo design</span>
+            <span class="card-tag graphic">Brand identity</span>
+            <span class="card-tag graphic">Symbol design</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link graphic"
+              href="https://www.logodesignlove.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: logo practice</span>
+          </div>
+        </article>
+
+        <!-- Canva Design School -->
+        <article class="card graphic" data-category="graphic">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator graphic"></span>Canva Design School</div>
+            <span class="badge graphic">Tutorials & challenges</span>
+          </div>
+          <p class="card-desc">
+            Free tutorials, challenges, and courses on graphic design principles, tools, and techniques. Great for beginners and intermediate designers.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag graphic">Design principles</span>
+            <span class="card-tag graphic">Tutorials</span>
+            <span class="card-tag graphic">Beginners</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link graphic"
+              href="https://www.canva.com/design-school"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: learning basics</span>
+          </div>
+        </article>
+
+        <!-- Adobe Creative Challenges -->
+        <article class="card graphic" data-category="graphic">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator graphic"></span>Adobe Creative Challenges</div>
+            <span class="badge graphic">Creative prompts</span>
+          </div>
+          <p class="card-desc">
+            Monthly creative challenges from Adobe covering illustration, photography, and graphic design. Great for trying new styles and techniques.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag graphic">Illustration</span>
+            <span class="card-tag graphic">Creative prompts</span>
+            <span class="card-tag graphic">Monthly challenges</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link graphic"
+              href="https://creativecloud.adobe.com/discover"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: creative exploration</span>
+          </div>
+        </article>
+
+        <!-- Poster Jam -->
+        <article class="card graphic" data-category="graphic">
+          <div class="card-header">
+            <div class="card-title"><span class="category-indicator graphic"></span>Poster Jam</div>
+            <span class="badge graphic">Poster design challenges</span>
+          </div>
+          <p class="card-desc">
+            Weekly poster design challenges with prompts and themes. Excellent for practicing layout, composition, and visual storytelling.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag graphic">Poster design</span>
+            <span class="card-tag graphic">Layout</span>
+            <span class="card-tag graphic">Visual storytelling</span>
+          </div>
+          <div class="card-footer">
+            <a
+              class="card-link graphic"
+              href="https://www.posterjam.club"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Visit site</span>
+              <span class="icon">↗</span>
+            </a>
+            <span class="card-meta">Best for: layout practice</span>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <span class="footer-note">
+        Made for designers who want to practice <strong>all aspects of design</strong>.
+      </span>
+      <div>
+        <a class="footer-tag" href="https://www.linkedin.com/in/sagar-shivaji-090904262/" target="_blank">LinkedIn ↗</a>
+        <a class="footer-tag" href="https://www.behance.net/sagarshivaji" target="_blank">Behance ↗</a>
+        <span class="footer-tag">Share this repo</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.card');
+      const counter = document.getElementById('counter');
+      const totalCards = cards.length;
+      
+      // Update counter
+      function updateCounter(category) {
+        if (category === 'all') {
+          counter.textContent = `Showing ${totalCards} resources`;
+        } else {
+          const filteredCards = document.querySelectorAll(`.card.${category}:not(.hidden)`);
+          counter.textContent = `Showing ${filteredCards.length} ${category === 'uiux' ? 'UI/UX' : 'graphic design'} resources`;
+        }
+      }
+      
+      // Filter cards
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const category = this.getAttribute('data-category');
+          
+          // Update active button
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Show/hide cards
+          cards.forEach(card => {
+            if (category === 'all') {
+              card.classList.remove('hidden');
+            } else {
+              if (card.getAttribute('data-category') === category) {
+                card.classList.remove('hidden');
+              } else {
+                card.classList.add('hidden');
+              }
+            }
+          });
+          
+          // Update counter
+          updateCounter(category);
+        });
+      });
+      
+      // Initialize counter
+      updateCounter('all');
+    });
+  </script>
+</body>
+</html>
